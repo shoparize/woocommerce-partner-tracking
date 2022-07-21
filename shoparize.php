@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Shoparize
- * Description: This is the plugin that will make me a senior full stack developer and get %30 base salary increase
+ * Description: Shoparize partner tracking
  * Plugin URI: https://www.shoparize.com
  * Version: 0.0.1
  * Author: Shoparize
@@ -29,6 +29,11 @@ if (
 
     function after_purchase_action($order_id)
     {
+        echo '<script>' . PHP_EOL;
+
+        echo 'console.log("oldu mu alper")';
+
+        echo '</script>' . PHP_EOL;
         echo "<script>console.log('Order ID: " . $order_id . "');</script>";
         wp_register_script( 'myprefix-dummy-js-header', '',);
         wp_enqueue_script( 'myprefix-dummy-js-header' );
