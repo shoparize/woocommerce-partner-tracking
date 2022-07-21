@@ -54,7 +54,7 @@ const SHOPARIZE_API = () => {
   }
   const init = (shopID) => {
     if(shopID) {
-    
+
       const keywords = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "msclkid", "gclid", "wbraid", "gbraid"];
 
      	const url = new URLSearchParams(window.location.search);
@@ -84,17 +84,17 @@ const SHOPARIZE_API = () => {
             shoparize_setToCookies("_partner_" + item, val);
           }
         });
-        
+
         sendAsyncReq(obj, 'click');
       }
     }else {
     	throw new Error("Please provide shopID");
     }
   }
-  
+
   const conv = (shopID) => {
   	if(shopID) {
-    
+
       const keywords = ["_partner_utm_source", "_partner_utm_medium", "_partner_utm_campaign", "_partner_utm_term", "_partner_msclkid", "_partner_gclid", "_partner_wbraid", "_partner_gbraid", "_partner_click_time"];
 
       let obj = {
@@ -104,7 +104,7 @@ const SHOPARIZE_API = () => {
       };
 
       keywords.forEach(item => {
-      
+
         obj[item] = shoparize_getFromCookies(item);
       });
 
@@ -116,3 +116,27 @@ const SHOPARIZE_API = () => {
   return {init: init, conv: conv};
 }
 
+/*
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayerShoparize = window.dataLayerShoparize || [];
+dataLayerShoparize.push({
+  event: "purchase",
+  ecommerce: {
+      transaction_id: "{{ order.order_number }}",
+      value: {{ total_price | times: 0.01 }},
+      tax: {{ tax_price | times: 0.01 }},
+      shipping: {{ shipping_price | times: 0.01 }},
+      currency: "{{ order.currency }}",
+      items: [
+       {% for line_item in line_items %}{
+        item_id: "{{ line_item.product_id }}",
+        item_name: "{{ line_item.title | remove: "'" | remove: '"' }}",
+        currency: "{{ order.currency }}",
+        price: {{ line_item.final_price | times: 0.01 }},
+        quantity: {{ line_item.quantity }}
+      },{% endfor %}
+ ]
+  }
+});
+ */

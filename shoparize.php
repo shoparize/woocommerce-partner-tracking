@@ -27,15 +27,12 @@ if (
  	    wp_enqueue_script( 'shoparize_script', plugin_dir_url( __FILE__ ) . 'shoparize.js' );
     }
 
-    function after_purchase_action($order)
+    function after_purchase_action($order_id)
     {
-	    //add_action( 'wp_footer', 'add_inline_script', 0 );
-	    add_inline_script();
-    }
-
-    function add_inline_script()
-    {
-	    echo '<script>console.log("Order created");const shoparize = SHOPARIZE_API();shoparize.conv("shopID");</script>';
+        echo "<script>console.log('Order ID: " . $order_id . "');</script>";
+        wp_register_script( 'myprefix-dummy-js-header', '',);
+        wp_enqueue_script( 'myprefix-dummy-js-header' );
+        wp_add_inline_script( 'myprefix-dummy-js-header', "console.log('loaded in header');");
     }
 
     add_action('woocommerce_payment_complete', 'after_purchase_action', 10, 1 );
