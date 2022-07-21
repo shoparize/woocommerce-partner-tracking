@@ -29,18 +29,13 @@ if (
 
     function after_purchase_action($order_id)
     {
-        echo '<script>' . PHP_EOL;
-
-        echo 'console.log("oldu mu alper")';
-
-        echo '</script>' . PHP_EOL;
-        echo "<script>console.log('Order ID: " . $order_id . "');</script>";
         wp_register_script( 'myprefix-dummy-js-header', '',);
         wp_enqueue_script( 'myprefix-dummy-js-header' );
-        wp_add_inline_script( 'myprefix-dummy-js-header', "console.log('loaded in header');");
+        wp_add_inline_script( 'myprefix-dummy-js-header', 'window.onload = function () {const shoparize = SHOPARIZE_API();shoparize.conv("shopID");}');
+
     }
 
-    add_action('woocommerce_payment_complete', 'after_purchase_action', 10, 1 );
+    add_action('woocommerce_thankyou', 'after_purchase_action', 10, 1 );
 }
 
 ?>
