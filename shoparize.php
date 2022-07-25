@@ -29,6 +29,11 @@ if (
 
     function after_purchase_action($order_id)
     {
+        $order = wc_get_order($order_id); //<--check this line
+        $order_data = $order->get_data();
+        echo "<script>";
+            echo "var dataLayer = " . json_encode($order_data) . ";";
+        echo "</script>";
         wp_register_script( 'myprefix-dummy-js-header', '',);
         wp_enqueue_script( 'myprefix-dummy-js-header' );
         wp_add_inline_script( 'myprefix-dummy-js-header', 'window.onload = function () {const shoparize = SHOPARIZE_API();shoparize.conv("shopID");}');
