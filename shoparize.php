@@ -39,7 +39,7 @@ if (
 
     function after_purchase_action($order_id)
     {
-        $order = wc_get_order($order_id); //<--check this line
+        $order = wc_get_order($order_id);
         $order_data = $order->get_data();
         $order_items = $order_data['line_items'];
         $custom_order = [
