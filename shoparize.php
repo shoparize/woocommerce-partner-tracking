@@ -24,12 +24,11 @@ if (
 
     function shoparize_public_scripts()
     {
- 	    wp_enqueue_script( 'shoparize_script', 'https://partner-cdn.shoparize.com/js/app.js' );
-        wp_register_script( 'myprefix-dummy-js-footer', '',);
-        wp_enqueue_script( 'myprefix-dummy-js-footer' );
-        wp_add_inline_script( 'myprefix-dummy-js-footer', 'window.onload = function () {
-            var shoparize = SHOPARIZE_API(); 
-            shoparize.init(999);
+ 	    wp_enqueue_script( 'shoparize_script', 'https://partner-cdn.shoparize.com/js/shoparize.js' );
+        wp_register_script( 'myprefix-dummy-js-header', '',);
+        wp_enqueue_script( 'myprefix-dummy-js-header' );
+        wp_add_inline_script( 'myprefix-dummy-js-header', 'window.onload = function () {
+            SHOPARIZE_API().init(999);
         }');
     }
 
@@ -59,14 +58,13 @@ if (
         }
         echo "<script>";
             echo "var dataLayerShoparize = [" . json_encode($custom_order) . "];";
+            echo "window.onload = function () {  SHOPARIZE_API().conv(999); }";
         echo "</script>";
 
-        wp_register_script( 'myprefix-dummy-js-header', '',);
-        wp_enqueue_script( 'myprefix-dummy-js-header' );
-        wp_add_inline_script( 'myprefix-dummy-js-header', 'window.onload = function () {
-                shoparize.conv(999);
-            
-        }');
+
+        wp_register_script( 'myprefix-dummy-js-footer', '',);
+        wp_enqueue_script( 'myprefix-dummy-js-footer' );
+        wp_add_inline_script( 'myprefix-dummy-js-footer', '');
     }
 
     add_action('woocommerce_thankyou', 'after_purchase_action', 10, 1 );
