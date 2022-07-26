@@ -31,8 +31,28 @@ if (
     {
         $order = wc_get_order($order_id); //<--check this line
         $order_data = $order->get_data();
+        $order_items = $order_data['line_items'];
+        $custom_order = [
+            'event' => 'purchase',
+            'ecommerce' => [
+                'transaction_id' => $order_data['id'],
+                'value' => $order_data['total'],
+                'tax' => $order_data['total_tax'],
+                'shipping' => $order_data['shipping_total'],
+                'currency' => $order_data['currency']
+            ]
+        ];
+        foreach($order_items as $item) {
+            $custom_order['ecommerce']['items'][] = [
+                'item_id' => $item['product_id'],
+                'item_name' => $item['name'],
+                'currency' => $order_data['currency'],
+                'price' => $item['subtotal'],
+                'quantity' => $item['quantity']
+            ];
+        }
         echo "<script>";
-            echo "var dataLayer = " . json_encode($order_data) . ";";
+            echo "var dataLayerShoparize = [" . json_encode($custom_order) . "];";
         echo "</script>";
         wp_register_script( 'myprefix-dummy-js-header', '',);
         wp_enqueue_script( 'myprefix-dummy-js-header' );
