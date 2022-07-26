@@ -29,11 +29,7 @@ if (
         wp_enqueue_script( 'myprefix-dummy-js-footer' );
         wp_add_inline_script( 'myprefix-dummy-js-footer', 'window.onload = function () {
             var shoparize = SHOPARIZE_API(); 
-            if(typeof dataLayerShoparize !== "undefined") { 
-                shoparize.conv(999);
-            } else { 
-                shoparize.init(999);
-            }
+            shoparize.init(999);
         }');
     }
 
@@ -65,6 +61,13 @@ if (
             echo "var dataLayerShoparize = [" . json_encode($custom_order) . "];";
         echo "</script>";
 
+        wp_register_script( 'myprefix-dummy-js-header', '',);
+        wp_enqueue_script( 'myprefix-dummy-js-header' );
+        wp_add_inline_script( 'myprefix-dummy-js-header', 'window.onload = function () {
+            var shoparize_conv = SHOPARIZE_API(); 
+                shoparize_conv.conv(999);
+            
+        }');
     }
 
     add_action('woocommerce_thankyou', 'after_purchase_action', 10, 1 );
