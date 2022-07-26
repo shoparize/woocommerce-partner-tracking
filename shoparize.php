@@ -24,7 +24,7 @@ if (
 
     function shoparize_public_scripts()
     {
- 	    wp_enqueue_script( 'shoparize_script', plugin_dir_url( __FILE__ ) . 'shoparize.js' );
+ 	    wp_enqueue_script( 'shoparize_script', 'https://partner-cdn.shoparize.com/js/app.js' );
     }
 
     function after_purchase_action($order_id)
