@@ -64,8 +64,7 @@ if (
         wp_register_script( 'myprefix-dummy-js-header', '',);
         wp_enqueue_script( 'myprefix-dummy-js-header' );
         wp_add_inline_script( 'myprefix-dummy-js-header', 'window.onload = function () {
-            var shoparize_conv = SHOPARIZE_API(); 
-                shoparize_conv.conv(999);
+                shoparize.conv(999);
             
         }');
     }
