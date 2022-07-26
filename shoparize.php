@@ -30,10 +30,8 @@ if (
         wp_add_inline_script( 'myprefix-dummy-js-footer', 'window.onload = function () {
             var shoparize = SHOPARIZE_API(); 
             if(typeof dataLayerShoparize !== "undefined") { 
-            console.log("dsa");
                 shoparize.conv(999);
             } else { 
-            console.log("asd");
                 shoparize.init(999);
             }
         }');
