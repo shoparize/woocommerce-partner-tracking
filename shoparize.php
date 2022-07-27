@@ -24,16 +24,18 @@ if (
 
     function shoparize_public_scripts()
     {
+        $options = get_option( 'shoparize_partner_tracking' );
  	    wp_enqueue_script( 'shoparize_script', 'https://partner-cdn.shoparize.com/js/shoparize.js' );
         wp_register_script( 'myprefix-dummy-js-header', '',);
         wp_enqueue_script( 'myprefix-dummy-js-header' );
         wp_add_inline_script( 'myprefix-dummy-js-header', 'window.onload = function () {
-            SHOPARIZE_API().init(999);
+            SHOPARIZE_API().init(' . $options['shop_id'] . ');
         }');
     }
 
     function after_purchase_action($order_id)
     {
+        $options = get_option( 'shoparize_partner_tracking' );
         $order = wc_get_order($order_id);
         $order_data = $order->get_data();
         $order_items = $order_data['line_items'];
@@ -58,7 +60,7 @@ if (
         }
         echo "<script>";
             echo "var dataLayerShoparize = [" . json_encode($custom_order) . "];";
-            echo "window.onload = function () {  SHOPARIZE_API().conv(999); }";
+            echo "window.onload = function () {  SHOPARIZE_API().conv(" . $options['shop_id'] . "); }";
         echo "</script>";
 
 
@@ -70,4 +72,5 @@ if (
     add_action('woocommerce_thankyou', 'after_purchase_action', 10, 1 );
 }
 
+require_once(plugin_dir_path(__FILE__) . 'shoparize-admin.php');
 ?>
