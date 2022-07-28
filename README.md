@@ -1,2 +1,3 @@
-SHOPARIZE PARTNER TRACKING WOOCOMMERCE PLUGIN
+Shoparize Partner Tracking Plugin for WooCommerce
 ================================================
+
