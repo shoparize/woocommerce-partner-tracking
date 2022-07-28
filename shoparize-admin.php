@@ -7,7 +7,7 @@ function shoparize_partner_settings_init() {
 
     add_settings_section(
         'shoparize_partner_dev',
-        __( 'Shop Settings', 'shoparize_partner' ), 'shoparize_partner_dev_callback',
+        __( 'Tracking Settings', 'shoparize_partner' ), 'shoparize_partner_dev_callback',
         'shoparize-partner'
     );
 
@@ -28,7 +28,12 @@ add_action( 'admin_init', 'shoparize_partner_settings_init' );
 
 function shoparize_partner_dev_callback( $args ) {
     ?>
-    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Please enter your shop id.', 'shoparize_partner' ); ?></p>
+    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'By entering your shop ID and click Save Changes, your WooCommerce store will be automatically set up for Shoparize Partner Tracking.
+
+', 'shoparize_partner' ); ?></p>
+    <p>
+        <?php esc_html_e( "If you don't have a shop ID please sign up to the Shoparize network first to receive your shop ID, via ", 'shoparize_partner' ); ?><a href="https://partner.shoparize.com">https://partner.shoparize.com</a>
+    </p>
     <?php
 }
 
