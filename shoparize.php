@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Plugin Name: Shoparize
- * Description: Shoparize partner tracking
- * Plugin URI: https://www.shoparize.com
- * Version: 0.0.1
+ * Plugin Name: Shoparize Partner
+ * Description: Shoparize partner
+ * Version: 1.0.0
  * Author: Shoparize
  * Author URI: https://www.shoparize.com
  */
@@ -33,7 +32,7 @@ if (
         }');
     }
 
-    function after_purchase_action($order_id)
+    function shoparize_after_purchase_action($order_id)
     {
         $options = get_option( 'shoparize_partner_tracking' );
         $order = wc_get_order($order_id);
@@ -59,9 +58,9 @@ if (
             ];
         }
         echo "<script>";
-            echo "var dataLayerShoparize = [" . json_encode($custom_order) . "];";
-            echo "window.onload = function () {  SHOPARIZE_API().conv(" . $options['shop_id'] . "); }";
-        echo "</script>";
+            echo  "var dataLayerShoparize = [" . esc_attr(json_encode($custom_order)) . "];";
+            echo  "window.onload = function () {  SHOPARIZE_API().conv(" . esc_attr($options['shop_id']) . "); }";
+        echo  "</script>";
 
 
         wp_register_script( 'myprefix-dummy-js-footer', '',);
@@ -69,7 +68,7 @@ if (
         wp_add_inline_script( 'myprefix-dummy-js-footer', '');
     }
 
-    add_action('woocommerce_thankyou', 'after_purchase_action', 10, 1 );
+    add_action('woocommerce_thankyou', 'shoparize_after_purchase_action', 10, 1 );
 }
 
 require_once(plugin_dir_path(__FILE__) . 'shoparize-admin.php');

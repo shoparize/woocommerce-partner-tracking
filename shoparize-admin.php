@@ -28,7 +28,7 @@ add_action( 'admin_init', 'shoparize_partner_settings_init' );
 
 function shoparize_partner_dev_callback( $args ) {
     ?>
-    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'By entering your shop ID and click Save Changes, your WooCommerce store will be automatically set up for Shoparize Partner Tracking.
+    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'By entering your shop ID and click Save Changes, your WooCommerce store will be automatically set up for Shoparize Partner.
 
 ', 'shoparize_partner' ); ?></p>
     <p>
@@ -43,7 +43,7 @@ function shoparize_partner_cb( $args ) {
     <input
             id="<?php echo esc_attr( $args['label_for'] ); ?>"
             name="shoparize_partner_tracking[<?php echo esc_attr( $args['label_for'] ); ?>]"
-            value="<?php echo $options[ $args['label_for'] ]; ?>"
+            value="<?php echo esc_attr($options[ $args['label_for'] ]); ?>"
             />
     <?php
 }
