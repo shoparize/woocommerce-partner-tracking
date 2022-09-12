@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Shoparize Partner
  * Description: Shoparize partner
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Shoparize
  * Author URI: https://www.shoparize.com
  */
