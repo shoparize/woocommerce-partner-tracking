@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Shoparize Partner
  * Description: Shoparize partner
- * Version: 1.0.1
+ * Version: 1.0.3
  * Author: Shoparize
  * Author URI: https://www.shoparize.com
  */
@@ -59,7 +59,7 @@ if (
             ];
         }
         echo "<script>";
-            echo  "var dataLayerShoparize = [" . esc_attr(json_encode($custom_order)) . "];";
+            echo  "var dataLayerShoparize = [" . wp_json_encode($custom_order) . "];";
             echo  "window.addEventListener('load', function () { SHOPARIZE_API().conv(" . esc_attr($options['shop_id']) . "); });";
         echo  "</script>";
 

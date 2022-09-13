@@ -6,7 +6,7 @@ Author: shoparize
 Requires at least: 3.5
 Tested up to: 6.0.1
 Requires PHP: 5.6
-Stable tag: 1.0.1
+Stable tag: 1.0.3
 License: GPLv3 or later License
 URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -44,4 +44,8 @@ For the purpose of attributing sales and commissions to publishers, Shoparize wi
 = 1.0.0 =
 * initial release
 = 1.0.1 =
+* bug fixes
+= 1.0.2 =
+* bug fixes
+= 1.0.3 =
 * bug fixes
