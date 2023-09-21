@@ -1,0 +1,55 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "59f64d3b433cb1b10240bee8d984f590",
+    "packages": [
+        {
+            "name": "shoparize/partner-plugin-product-api",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shoparize/partner-plugin-product-api.git",
+                "reference": "085e9e863ad0e35e1e78d63eeb6aad9839548537"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shoparize/partner-plugin-product-api/zipball/085e9e863ad0e35e1e78d63eeb6aad9839548537",
+                "reference": "085e9e863ad0e35e1e78d63eeb6aad9839548537",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6|^7.0|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Shoparize\\PartnerPluginProductApi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Dzmitry Urbanovich",
+                    "email": "dzmitry.urbanovich@shoparize.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/shoparize/partner-plugin-product-api/issues",
+                "source": "https://github.com/shoparize/partner-plugin-product-api/tree/1.0.1"
+            },
+            "time": "2023-08-16T09:14:16+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

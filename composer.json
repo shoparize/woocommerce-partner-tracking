@@ -1,0 +1,18 @@
+{
+    "name": "shoparize/woocommerce-partner-tracking",
+    "type": "project",
+    "require": {
+        "shoparize/partner-plugin-product-api": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Shoparize\\WoocommercePartnerTracking\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "DzmitryU",
+            "email": "urbanovich.mslo@gmail.com"
+        }
+    ]
+}
