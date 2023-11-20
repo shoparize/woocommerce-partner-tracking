@@ -16,12 +16,6 @@ function shoparize_partner_api_get_products(\WP_REST_Request $request)
     $limit = $request->get_param('limit');
     $updated_after = $request->get_param('updated_after');
 
-    file_put_contents('./log.txt', print_r($limit, true));
-    file_put_contents('./log.txt', print_r($updated_after, true) . "\n", 8);
-    file_put_contents('./log.txt', print_r($page, true) . "\n", 8);
-    file_put_contents('./log.txt', print_r($request, true) . "\n", 8);
-
-
     $args = [
         'status' => ['publish'],
         'limit' => $limit > 0 ? $limit : -1,
