@@ -70,6 +70,21 @@ if (
     }
 
     add_action('woocommerce_thankyou', 'shoparize_after_purchase_action', 10, 1 );
+
+    function shoparize_after_purchase_action_by_order_key_parameter($content) {
+        $order_key = $_GET['order_key'] ?? $_GET['key'] ?? false;
+        if ($order_key) {
+            if ($order_id = wc_get_order_id_by_order_key($order_key)) {
+                ob_start();
+                shoparize_after_purchase_action($order_id);
+                $content .= ob_get_clean();
+            }
+        }
+
+        return $content;
+    }
+
+    add_filter('the_content', 'shoparize_after_purchase_action_by_order_key_parameter', 10, 1);
 }
 
 require_once(plugin_dir_path(__FILE__) . 'shoparize-admin.php');
