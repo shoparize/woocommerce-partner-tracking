@@ -1,14 +1,15 @@
-=== Shoparize Partner Plugin for WooCommerce ===
+=== Shoparize Partner ===
 Contributors: shoparize
-Tags: advertiser, affiliate, affiliate window, shoparize, kiesproduct, tracking
+Tags: advertiser, affiliate, shoparize, kiesproduct, tracking
 Author URI: https://profiles.wordpress.org/shoparize/
 Author: shoparize
 Requires at least: 3.5
-Tested up to: 6.0.1
+Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 1.0.3
-License: GPLv3 or later License
+Stable tag: 1.0.4
+License: GPL v2 or later
 URI: http://www.gnu.org/licenses/gpl-3.0.html
+Shoparize Partner Plugin for Woocommerce
 
 == Description ==
 
@@ -16,7 +17,6 @@ Shoparize’s superior customer service, with a merchant portal to feed and camp
 Shoparize’s intelligent e-commerce platform is built to grow your business. We maximize our merchant’s online performance by giving shoppers the best online shopping experience.
 A Premium Google CSS Partner that offers Managed and Self-Service CSS with a high traffic Comparison Shopping website listing. The Shoparize Partner Tracking extension allows for seamless integration of our core systems within WooCommerce.
 This plugin uses the [Shoparize Partner API](https://partner.shoparize.com) to track clicks and conversions on page visits and purchases. Please also see our [privacy policy.](https://partner.shoparize.com/privacy) for detailed information.
-
 
 = About =
 

@@ -107,9 +107,9 @@ function shoparize_partner_attributes($args)
                     echo 'selected';
                 } ?>
                     value="<?php
-                    echo $taxonomy_name; ?>">
+                    echo esc_html($taxonomy_name); ?>">
                 <?php
-                echo $taxonomy->attribute_name; ?>
+                echo esc_html($taxonomy->attribute_name); ?>
             </option>
         <?php
         endforeach; ?>
@@ -136,7 +136,7 @@ function shoparize_partner_options_page_html()
         return;
     }
 
-    if (isset($_GET['settings-updated'])) {
+    if (get_query_var('settings-updated')) {
         add_settings_error(
             'shoparize_partner_messages',
             'shoparize_partner_message',
@@ -213,13 +213,18 @@ function shoparize_partner_product_data_fields()
 add_action('woocommerce_process_product_meta', 'shoparize_partner_process_product_meta_fields_save');
 function shoparize_partner_process_product_meta_fields_save($post_id)
 {
-    if (isset($_POST['shoparize_partner_brand'])) {
+    if (!isset($_POST['woocommerce_meta_nonce'])
+        || wp_verify_nonce(sanitize_key($_POST['woocommerce_meta_nonce']), 'woocommerce_save_data' )) {
+        return;
+    }
+
+    if (!empty($_POST['shoparize_partner_brand'])) {
         update_post_meta($post_id, 'shoparize_partner_brand', esc_attr($_POST['shoparize_partner_brand']));
     }
-    if (isset($_POST['shoparize_partner_gtin'])) {
+    if (!empty($_POST['shoparize_partner_gtin'])) {
         update_post_meta($post_id, 'shoparize_partner_gtin', esc_attr($_POST['shoparize_partner_gtin']));
     }
-    if (isset($_POST['shoparize_partner_condition'])) {
+    if (!empty($_POST['shoparize_partner_condition'])) {
         update_post_meta($post_id, 'shoparize_partner_condition', esc_attr($_POST['shoparize_partner_condition']));
     }
 }

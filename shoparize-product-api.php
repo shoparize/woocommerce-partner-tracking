@@ -16,12 +16,6 @@ function shoparize_partner_api_get_products(\WP_REST_Request $request)
     $limit = $request->get_param('limit');
     $updated_after = $request->get_param('updated_after');
 
-    file_put_contents('./log.txt', print_r($limit, true));
-    file_put_contents('./log.txt', print_r($updated_after, true) . "\n", 8);
-    file_put_contents('./log.txt', print_r($page, true) . "\n", 8);
-    file_put_contents('./log.txt', print_r($request, true) . "\n", 8);
-
-
     $args = [
         'status' => ['publish'],
         'limit' => $limit > 0 ? $limit : -1,
@@ -60,7 +54,7 @@ function shoparize_partner_api_get_products(\WP_REST_Request $request)
         );
         $feed_item->setPrice($product->get_regular_price());
         $feed_item->setSalePrice($product->get_price());
-        $feed_item->setDescription(strip_tags($product->get_description()));
+        $feed_item->setDescription(wp_strip_all_tags($product->get_description()));
         $feed_item->setBrand($product->get_meta('shoparize_partner_brand'));
         $feed_item->setGtin($product->get_meta('shoparize_partner_brand'));
         $feed_item->setCondition($product->get_meta('shoparize_partner_brand'));
