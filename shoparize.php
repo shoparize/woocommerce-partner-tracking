@@ -1,11 +1,17 @@
 <?php
 
-/**
- * Plugin Name: Shoparize Partner
- * Description: Shoparize partner
- * Version: 1.0.3
- * Author: Shoparize
- * Author URI: https://www.shoparize.com
+/*
+ * Plugin Name:       Shoparize Partner
+ * Description:       Shoparize Partner
+ * Version:           1.0.9
+ * Requires PHP:      5.6
+ * Author:            Shoparize
+ * Author URI:        https://www.shoparize.com
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       shoparize
+ * Domain Path:       /
+ * Requires Plugins:  woocommerce
  */
 
 // Test to see if WooCommerce is active (including network activated).
@@ -24,12 +30,17 @@ if (
     function shoparize_public_scripts()
     {
         $options = get_option( 'shoparize_partner_tracking' );
- 	    wp_enqueue_script( 'shoparize_script', 'https://partner-cdn.shoparize.com/js/shoparize.js' );
-        wp_register_script( 'myprefix-dummy-js-header', '',);
+ 	    wp_enqueue_script( 'shoparize_script', 'https://partner-cdn.shoparize.com/js/shoparize.js', [], '1.0.1', false );
+        wp_register_script( 'myprefix-dummy-js-header', '', [], '1.0.1', false );
         wp_enqueue_script( 'myprefix-dummy-js-header' );
         wp_add_inline_script( 'myprefix-dummy-js-header', '
         window.addEventListener("load", function () {
-            SHOPARIZE_API().init(' . $options['shop_id'] . ');
+            let interval = setInterval(() => {
+                if (typeof window.SHOPARIZE_API != "undefined") {
+                  SHOPARIZE_API().init(' . $options['shop_id'] . ');
+                  clearInterval(interval);
+                }
+              }, 50);
         });');
     }
 
@@ -64,12 +75,27 @@ if (
         echo  "</script>";
 
 
-        wp_register_script( 'myprefix-dummy-js-footer', '',);
+        wp_register_script( 'myprefix-dummy-js-footer', '', [], '1.0.1', false );
         wp_enqueue_script( 'myprefix-dummy-js-footer' );
         wp_add_inline_script( 'myprefix-dummy-js-footer', '');
     }
 
     add_action('woocommerce_thankyou', 'shoparize_after_purchase_action', 10, 1 );
+
+    function shoparize_after_purchase_action_by_order_key_parameter($content) {
+        $order_key = get_query_var('order_key', get_query_var('key'), false);
+        if ($order_key) {
+            if ($order_id = wc_get_order_id_by_order_key($order_key)) {
+                ob_start();
+                shoparize_after_purchase_action($order_id);
+                $content .= ob_get_clean();
+            }
+        }
+
+        return $content;
+    }
+
+    add_filter('the_content', 'shoparize_after_purchase_action_by_order_key_parameter', 10, 1);
 }
 
 require_once(plugin_dir_path(__FILE__) . 'shoparize-admin.php');
